@@ -1,0 +1,90 @@
+# Django #
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+db.sqlite3
+db.sqlite3-journal
+*.sqlite3
+*.sqlite3-journal
+*.db
+*.db-journal
+local_settings.py
+.env
+.env.*.local
+*.env
+*.local
+instance/
+.DS_Store
+*.pid
+*.seed
+*.bak
+*.swp
+*.swo
+*.tmp
+*.orig
+
+# Unit test / coverage reports #
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+test_results/
+
+# pyenv #
+.python-version
+
+# pipenv #
+Pipfile.lock
+
+# virtualenv #
+venv/
+ENV/
+env/
+env.bak/
+env/
+*.venv
+__pypackages__/
+
+# PyCharm #
+.idea/
+*.iml
+
+# VS Code #
+.vscode/
+.vscode/*
+!/.vscode/settings.json
+
+# Temporary files #
+*.tmp
+*.temp
+*.log
+*.out
+*.lock
+
+# Static files #
+staticfiles/
+static/
+assets/
+*.tar.gz
+*.zip
+
+# Media files #
+media/
+uploads/
+
+# Node modules (if using npm for frontend assets) #
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build output #
+build/
+dist/

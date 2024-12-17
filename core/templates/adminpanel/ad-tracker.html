@@ -1,0 +1,92 @@
+{% extends "layouts/ad_base.html" %}
+
+{% block title %} Trackers {% endblock %} 
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+    <div class="d-block mb-4 mb-md-0">
+        <h2 class="h4">All Trackers</h2>
+    </div>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <a href="add_tracker/" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center">
+            <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+            New Tracker
+        </a>
+    </div>
+</div>
+
+<div class="table-settings mb-4">
+    <div class="row align-items-center justify-content-between">
+        <div class="col col-md-6 col-lg-3 col-xl-4">
+            <!-- Search Form -->
+            <form method="get" action="">
+                <div class="input-group me-2 me-lg-3 fmxw-400">
+                    <!-- Search Icon -->
+                    <span class="input-group-text">
+                        <svg class="icon icon-xs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                        </svg>
+                    </span>
+                    <!-- Input Field -->
+                    <input type="text" name="q" class="form-control" placeholder="Search trackers" value="{{ search_query }}">
+                    <!-- Search Button -->
+                    <button type="submit" class="btn btn-primary ms-2">Search</button>
+                    <!-- Clear Button -->
+                    <a href="{% url 'ad_tracker_list' %}" class="btn btn-secondary ms-2">Clear</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="card card-body border-0 shadow table-wrapper table-responsive" style="max-height: 500px; overflow-y: auto;">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="border-gray-200">S.N.</th>
+                <th class="border-gray-200">Tracker Name</th>
+                <th class="border-gray-200">URL</th>
+                <th class="border-gray-200">User</th>
+                <th class="border-gray-200">Created At</th>
+                <th class="border-gray-200">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tracker in trackers %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ tracker.tracker_name }}</td>
+                <td><a href="{{ tracker.url }}" target="_blank">{{ tracker.url }}</a></td>
+                <td>{{ tracker.user }}</td>
+                <td>{{ tracker.created_at }}</td>
+                <td>
+                    <div class="d-flex">
+                        <a href="{% url 'edit_tracker' tracker.tracker_id %}" class="btn btn-sm btn-warning me-2">
+                            <span class="fas fa-edit me-1"></span>Edit
+                        </a>
+                
+                        <a href="{% url 'tracker_delete' tracker.tracker_id %}" class="btn btn-sm btn-danger">
+                            <span class="fas fa-trash-alt me-1"></span>Delete
+                        </a>
+                    </div>
+                </td>                
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">No trackers found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        <a href="{% url 'ad_dashboard' %}" class="btn btn-secondary mt-3">Return to Dashboard</a>
+    <div>
+</div>
+
+{% endblock content %}
+
+{% block javascripts %}{% endblock javascripts %}

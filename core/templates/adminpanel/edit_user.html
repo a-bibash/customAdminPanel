@@ -1,0 +1,286 @@
+{% extends "layouts/ad_base.html" %}
+
+{% block title %} Edit Profiles {% endblock %}
+
+{% block stylesheets %}
+    <style>
+        /* General Layout */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        /* Form Section */
+        .form-section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2, h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #555;
+            display: block;
+            margin-right: 20px;
+            min-width: 120px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #fafafa;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* Error Styling */
+        .errors {
+            color: #f44336;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .errors p {
+            margin: 0;
+        }
+
+        /* Submit Button */
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            h2, h3 {
+                font-size: 20px;
+            }
+
+            label, input, select, textarea {
+                font-size: 14px;
+            }
+
+            .form-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            label {
+                margin-bottom: 8px;
+                margin-right: 0;
+            }
+
+            input, select, textarea {
+                width: 100%;
+            }
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="container">
+        <h2>Edit User Details</h2>
+
+        <form method="POST" action="{% url 'edit_user' user_id=profile.id %}">
+            {% csrf_token %}
+
+            <!-- Profile Information Section -->
+            <div class="form-section">
+                <h3>Profile Information</h3>
+
+                <!-- Profile Form Fields -->
+                <div class="form-group">
+                    <label for="{{ profile_form.first_name.id_for_label }}">First Name</label>
+                    {{ profile_form.first_name }}
+                    {% if profile_form.first_name.errors %}
+                        <div class="errors">
+                            {% for error in profile_form.first_name.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ profile_form.last_name.id_for_label }}">Last Name</label>
+                    {{ profile_form.last_name }}
+                    {% if profile_form.last_name.errors %}
+                        <div class="errors">
+                            {% for error in profile_form.last_name.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ profile_form.email.id_for_label }}">Email</label>
+                    {{ profile_form.email }}
+                    {% if profile_form.email.errors %}
+                        <div class="errors">
+                            {% for error in profile_form.email.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ profile_form.phonenumber.id_for_label }}">Phone Number</label>
+                    {{ profile_form.phonenumber }}
+                    {% if profile_form.phonenumber.errors %}
+                        <div class="errors">
+                            {% for error in profile_form.phonenumber.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                {% comment %} <div class="form-group">
+                    <label for="{{ profile_form.created_by.id_for_label }}">Created By</label>
+                    {{ profile_form.created_by }}
+                    {% if profile_form.created_by.errors %}
+                        <div class="errors">
+                            {% for error in profile_form.created_by.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div> {% endcomment %}
+
+                <div class="form-group">
+                    <label for="{{ profile_form.status.id_for_label }}">Status</label>
+                    {{ profile_form.status }}
+                    {% if profile_form.status.errors %}
+                        <div class="errors">
+                            {% for error in profile_form.status.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Subscription Information Section -->
+            <div class="form-section">
+                <h3>Subscription Information</h3>
+
+                <!-- Subscription Form Fields -->
+                <div class="form-group">
+                    <label for="{{ subscription_form.plan_name.id_for_label }}">Plan Name</label>
+                    {{ subscription_form.plan_name }}
+                    {% if subscription_form.plan_name.errors %}
+                        <div class="errors">
+                            {% for error in subscription_form.plan_name.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ subscription_form.start_date.id_for_label }}">Start Date</label>
+                    {{ subscription_form.start_date }}
+                    {% if subscription_form.start_date.errors %}
+                        <div class="errors">
+                            {% for error in subscription_form.start_date.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ subscription_form.end_date.id_for_label }}">End Date</label>
+                    {{ subscription_form.end_date }}
+                    {% if subscription_form.end_date.errors %}
+                        <div class="errors">
+                            {% for error in subscription_form.end_date.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ subscription_form.status.id_for_label }}">Subscription Status</label>
+                    {{ subscription_form.status }}
+                    {% if subscription_form.status.errors %}
+                        <div class="errors">
+                            {% for error in subscription_form.status.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ subscription_form.trigger_limit.id_for_label }}">Trigger Limit</label>
+                    {{ subscription_form.trigger_limit }}
+                    {% if subscription_form.trigger_limit.errors %}
+                        <div class="errors">
+                            {% for error in subscription_form.trigger_limit.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+{% endblock %}

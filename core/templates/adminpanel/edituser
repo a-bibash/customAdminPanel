@@ -1,0 +1,155 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+    <h2>Edit User</h2>
+
+    <form method="POST" action="{% url 'edit_user' user_id=profile.id %}">
+        {% csrf_token %}
+
+        <div class="form-section">
+            <h3>Profile Information</h3>
+            
+            <!-- Profile Form Fields -->
+            <div class="form-group">
+                <label for="{{ profile_form.first_name.id_for_label }}">First Name</label>
+                {{ profile_form.first_name }}
+                {% if profile_form.first_name.errors %}
+                    <div class="errors">
+                        {% for error in profile_form.first_name.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ profile_form.last_name.id_for_label }}">Last Name</label>
+                {{ profile_form.last_name }}
+                {% if profile_form.last_name.errors %}
+                    <div class="errors">
+                        {% for error in profile_form.last_name.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ profile_form.email.id_for_label }}">Email</label>
+                {{ profile_form.email }}
+                {% if profile_form.email.errors %}
+                    <div class="errors">
+                        {% for error in profile_form.email.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ profile_form.phonenumber.id_for_label }}">Phone Number</label>
+                {{ profile_form.phonenumber }}
+                {% if profile_form.phonenumber.errors %}
+                    <div class="errors">
+                        {% for error in profile_form.phonenumber.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ profile_form.created_by.id_for_label }}">Created By</label>
+                {{ profile_form.created_by }}
+                {% if profile_form.created_by.errors %}
+                    <div class="errors">
+                        {% for error in profile_form.created_by.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ profile_form.status.id_for_label }}">Status</label>
+                {{ profile_form.status }}
+                {% if profile_form.status.errors %}
+                    <div class="errors">
+                        {% for error in profile_form.status.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Subscription Information</h3>
+            
+            <!-- Subscription Form Fields -->
+            <div class="form-group">
+                <label for="{{ subscription_form.plan_name.id_for_label }}">Plan Name</label>
+                {{ subscription_form.plan_name }}
+                {% if subscription_form.plan_name.errors %}
+                    <div class="errors">
+                        {% for error in subscription_form.plan_name.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ subscription_form.start_date.id_for_label }}">Start Date</label>
+                {{ subscription_form.start_date }}
+                {% if subscription_form.start_date.errors %}
+                    <div class="errors">
+                        {% for error in subscription_form.start_date.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ subscription_form.end_date.id_for_label }}">End Date</label>
+                {{ subscription_form.end_date }}
+                {% if subscription_form.end_date.errors %}
+                    <div class="errors">
+                        {% for error in subscription_form.end_date.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ subscription_form.status.id_for_label }}">Subscription Status</label>
+                {{ subscription_form.status }}
+                {% if subscription_form.status.errors %}
+                    <div class="errors">
+                        {% for error in subscription_form.status.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ subscription_form.trigger_limit.id_for_label }}">Trigger Limit</label>
+                {{ subscription_form.trigger_limit }}
+                {% if subscription_form.trigger_limit.errors %}
+                    <div class="errors">
+                        {% for error in subscription_form.trigger_limit.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+
+{% endblock %}

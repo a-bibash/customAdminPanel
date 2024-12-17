@@ -1,0 +1,59 @@
+<!-- sidebar.html -->
+<nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
+    <a class="navbar-brand me-lg-5" href="{% url 'ad_dashboard' %}">
+        <img class="navbar-brand-dark" src="/static/assets/img/brand/light.svg" alt="Volt logo" />
+        <img class="navbar-brand-light" src="/static/assets/img/brand/dark.svg" alt="Volt logo" />
+    </a>
+    <div class="d-flex align-items-center">
+        <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<nav id="sidebarMenu" class="sidebar d-lg-block bg-gray-800 text-white collapse" data-simplebar>
+    <div class="sidebar-inner px-4 pt-3">
+        <!-- Sidebar Links -->
+        <ul class="nav flex-column pt-3 pt-md-0">
+
+            <!-- Home Link -->
+            <li class="nav-item {% if request.resolver_match.url_name == 'ad_dashboard' %} active {% endif %}">
+                <a href="{% url 'ad_dashboard' %}" class="nav-link">
+                    <span class="sidebar-icon">
+                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 2a1 1 0 011 1v3h5a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1h5V3a1 1 0 011-1z"></path>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text">Home</span>
+                </a>
+            </li>
+
+            <!-- User List Link -->
+            <li class="nav-item {% if request.resolver_match.url_name == 'ad_user_list' %} active {% endif %}">
+                <a href="{% url 'ad_user_list' %}" class="nav-link">
+                    <span class="sidebar-icon">
+                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 3a1 1 0 011-1h10a1 1 0 011 1v14a1 1 0 01-2 0V5H6v12a1 1 0 11-2 0V3z"></path>
+                            <path d="M8 8a2 2 0 110-4 2 2 0 010 4zM8 10a4 4 0 00-4 4v2h8v-2a4 4 0 00-4-4z"></path>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text">User List</span>
+                </a>
+            </li>
+
+            <!-- Tracker List Link -->
+            <li class="nav-item {% if request.resolver_match.url_name == 'ad_tracker_list' %} active {% endif %}">
+                <a href="{% url 'ad_tracker_list' %}" class="nav-link">
+                    <span class="sidebar-icon">
+                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 3a1 1 0 011-1h12a1 1 0 011 1v4H3V3z"></path>
+                            <path d="M3 9a1 1 0 011-1h12a1 1 0 011 1v7a1 1 0 01-1 1H4a1 1 0 01-1-1V9z"></path>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text">Tracker List</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
